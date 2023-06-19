@@ -20,9 +20,9 @@ extension WeekView {
             let day = Calendar.current.component(.day, from: currentDay)
             
             let isToday = currentDay.stripTime() == Date().stripTime()
-            backgroundColor = isToday ? Resources.Colors.active : Resources.Colors.background
-            nameLabel.textColor = isToday ? .white : Resources.Colors.inactive
-            dateLabel.textColor = isToday ? .white : Resources.Colors.inactive
+            backgroundColor = isToday ? R.Colors.active : R.Colors.background
+            nameLabel.textColor = isToday ? .white : R.Colors.inactive
+            dateLabel.textColor = isToday ? .white : R.Colors.inactive
             
             nameLabel.text = name
             dateLabel.text = "\(day)"
@@ -32,16 +32,16 @@ extension WeekView {
 
 extension WeekView.WeekDayView {
     
-    override func addViews() {
-        super.addViews()
+    override func setupViews() {
+        super.setupViews()
         
-        addView(stackView)
+        setupView(stackView)
         stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(dateLabel)
     }
     
-    override func layoutViews() {
-        super.layoutViews()
+    override func constraintViews() {
+        super.constraintViews()
         
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -49,15 +49,15 @@ extension WeekView.WeekDayView {
         ])
     }
     
-    override func configureView() {
-        super.configureView()
+    override func configureAppearance() {
+        super.configureAppearance()
         
         layer.cornerRadius = 5
         layer.masksToBounds = true
         
-        nameLabel.font = Resources.Fonts.helvelticaRegular(with: 9)
+        nameLabel.font = R.Fonts.helvelticaRegular(with: 9)
         
-        dateLabel.font = Resources.Fonts.helvelticaRegular(with: 15)
+        dateLabel.font = R.Fonts.helvelticaRegular(with: 15)
         
         stackView.spacing = 3
         stackView.axis = .vertical

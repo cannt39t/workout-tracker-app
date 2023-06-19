@@ -26,22 +26,22 @@ final class OverviewNavBar: BaseView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        addBottomBorder(with: Resources.Colors.separator, height: 1)
+        addBottomBorder(with: R.Colors.separator, height: 1)
     }
 }
 
 extension OverviewNavBar {
     
-    override func addViews() {
-        super.addViews()
-        addView(allWorkoutsButton)
-        addView(addButton)
-        addView(titleLabel)
-        addView(weekdayView)
+    override func setupViews() {
+        super.setupViews()
+        setupView(allWorkoutsButton)
+        setupView(addButton)
+        setupView(titleLabel)
+        setupView(weekdayView)
     }
     
-    override func layoutViews() {
-        super.layoutViews()
+    override func constraintViews() {
+        super.constraintViews()
         
         NSLayoutConstraint.activate([
             addButton.topAnchor.constraint(equalTo: topAnchor, constant: 8),
@@ -65,17 +65,17 @@ extension OverviewNavBar {
         ])
     }
     
-    override func configureView() {
-        super.configureView()
+    override func configureAppearance() {
+        super.configureAppearance()
         
         backgroundColor = .white
         
-        addButton.setImage(Resources.Images.Common.add, for: .normal)
+        addButton.setImage(R.Images.Common.add, for: .normal)
         
-        titleLabel.text = Resources.Strings.Navbar.Overview.title
-        titleLabel.textColor = Resources.Colors.titleGray
-        titleLabel.font = Resources.Fonts.helvelticaRegular(with: 22)
+        titleLabel.text = R.Strings.Navbar.Overview.title
+        titleLabel.textColor = R.Colors.titleGray
+        titleLabel.font = R.Fonts.helvelticaRegular(with: 22)
         
-        allWorkoutsButton.setTitle(Resources.Strings.Navbar.Overview.allWorkoutsButton)
+        allWorkoutsButton.setTitle(R.Strings.Navbar.Overview.allWorkoutsButton)
     }
 }
