@@ -28,10 +28,10 @@ class BaseInfoView: BaseView {
     }()
     
     init(with title: String? = nil, alignment: NSTextAlignment = .left) {
-        super.init(frame: .zero)
-        
         titleLabel.text = title?.uppercased()
         titleLabel.textAlignment = alignment
+        
+        super.init(frame: .zero)
     }
     
     required init?(coder: NSCoder) {
