@@ -9,28 +9,19 @@ import UIKit
 
 class OverviewViewController: BaseController {
     
-    
     private let navBar = OverviewNavBar()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        NSLayoutConstraint.activate([
-            
-        ])
-    }
 }
 
 extension OverviewViewController {
     
-    override func addViews() {
-        super.addViews()
+    override func setupViews() {
+        super.setupViews()
         
         view.setupView(navBar)
     }
     
-    override func layoutViews() {
-        super.layoutViews()
+    override func constraintViews() {
+        super.constraintViews()
         
         NSLayoutConstraint.activate([
             navBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -39,7 +30,7 @@ extension OverviewViewController {
         ])
     }
     
-    override func configure() {
+    override func configureAppearance() {
         navigationController?.navigationBar.isHidden = true
     }
 }

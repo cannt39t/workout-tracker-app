@@ -17,7 +17,7 @@ class BaseInfoView: BaseView {
         return label
     }()
     
-    private let contentVIew: UIView = {
+    private let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10
@@ -27,16 +27,43 @@ class BaseInfoView: BaseView {
         return view
     }()
     
+    init(with title: String? = nil, alignment: NSTextAlignment = .left) {
+        super.init(frame: .zero)
+        
+        titleLabel.text = title?.uppercased()
+        titleLabel.textAlignment = alignment
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 extension BaseInfoView {
     
     override func setupViews() {
         super.setupViews()
+        
+        setupView(titleLabel)
+        setupView(contentView)
     }
     
     override func constraintViews() {
         super.constraintViews()
+        
+        let contentTopAnchor: NSLayoutAnchor = titleLabel.text == nil ? topAnchor : titleLabel.bottomAnchor
+        let contentTopOffset: CGFloat = titleLabel.text == nil ? 0 : 16
+        
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: contentTopAnchor, constant: contentTopOffset),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
     
     override func configureAppearance() {
