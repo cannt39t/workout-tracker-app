@@ -1,5 +1,5 @@
 //
-//  BaseInfoView.swift
+//  WABaseInfoView.swift
 //  WorkoutTracker
 //
 //  Created by Илья Казначеев on 19.06.2023.
@@ -8,7 +8,7 @@
 import UIKit
 
 
-class BaseInfoView: BaseView {
+class WABaseInfoView: BaseView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -16,6 +16,8 @@ class BaseInfoView: BaseView {
         label.textColor = R.Colors.inactive
         return label
     }()
+    
+    private let button = WAButton(with: .primary)
     
     private let contentView: UIView = {
         let view = UIView()
@@ -27,9 +29,11 @@ class BaseInfoView: BaseView {
         return view
     }()
     
-    init(with title: String? = nil, alignment: NSTextAlignment = .left) {
+    init(with title: String? = nil, buttonTitle: String? = nil) {
         titleLabel.text = title?.uppercased()
-        titleLabel.textAlignment = alignment
+        titleLabel.textAlignment = buttonTitle == nil ? .center : .left
+        button.isHidden = buttonTitle == nil
+        button.setTitle(buttonTitle?.uppercased())
         
         super.init(frame: .zero)
     }
@@ -37,15 +41,20 @@ class BaseInfoView: BaseView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func addButtonTarget(target: Any?, action: Selector) {
+        button.addTarget(target, action: action, for: .touchUpInside)
+    }
 }
 
-extension BaseInfoView {
+extension WABaseInfoView {
     
     override func setupViews() {
         super.setupViews()
         
         setupView(titleLabel)
         setupView(contentView)
+        setupView(button)
     }
     
     override func constraintViews() {
@@ -58,6 +67,10 @@ extension BaseInfoView {
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            
+            button.trailingAnchor.constraint(equalTo: trailingAnchor),
+            button.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            button.heightAnchor.constraint(equalToConstant: 28),
             
             contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: trailingAnchor),

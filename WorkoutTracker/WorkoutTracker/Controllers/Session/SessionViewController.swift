@@ -7,10 +7,10 @@
 
 import UIKit
 
-class SessionViewController: BaseController {
+final class SessionViewController: BaseController {
 
-    private let timerView: BaseInfoView = {
-        let base = BaseInfoView(with: "Test")
+    private let timerView: WABaseInfoView = {
+        let base = WABaseInfoView(with: "test", buttonTitle: "sdf")
         
         return base
     }()

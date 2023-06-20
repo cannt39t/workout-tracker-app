@@ -47,7 +47,11 @@ final class TabBarViewController: UITabBarController {
             case .overview: return OverviewViewController()
             case .session: return SessionViewController()
             case .progress: return ProgressViewController()
-            case .settings: return SessionViewController()
+            case .settings: return SettingsViewController()
         }
+    }
+    
+    public func switchToTab(_ tab: Tabs) {
+        selectedIndex = tab.rawValue
     }
 }

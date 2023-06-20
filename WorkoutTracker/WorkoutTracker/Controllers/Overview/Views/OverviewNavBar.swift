@@ -9,10 +9,26 @@ import UIKit
 
 final class OverviewNavBar: BaseView {
     
-    private let allWorkoutsButton = SecondaryButton()
-    private let addButton = UIButton()
-    private let titleLabel = UILabel()
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = R.Strings.Navbar.Overview.title
+        label.textColor = R.Colors.titleGray
+        label.font = R.Fonts.helvelticaRegular(with: 22)
+        return label
+    }()
     
+    private let allWorkoutsButton: WAButton = {
+        let button = WAButton(with: .secondary)
+        button.setTitle(R.Strings.Navbar.Overview.allWorkoutsButton)
+        return button
+    }()
+    
+    private let addButton: UIButton = {
+        let button = UIButton()
+        button.setImage(R.Images.Common.add, for: .normal)
+        return button
+    }()
+
     private let weekdayView = WeekView()
     
     func allWorkoutsButtonAction(_ action: Selector, _ target: Any?) {
@@ -51,7 +67,6 @@ extension OverviewNavBar {
             
             allWorkoutsButton.trailingAnchor.constraint(equalTo: addButton.leadingAnchor, constant: -15),
             allWorkoutsButton.heightAnchor.constraint(equalToConstant: 28),
-            allWorkoutsButton.widthAnchor.constraint(equalToConstant: 130),
             allWorkoutsButton.bottomAnchor.constraint(equalTo: addButton.bottomAnchor),
             
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
@@ -69,13 +84,5 @@ extension OverviewNavBar {
         super.configureAppearance()
         
         backgroundColor = .white
-        
-        addButton.setImage(R.Images.Common.add, for: .normal)
-        
-        titleLabel.text = R.Strings.Navbar.Overview.title
-        titleLabel.textColor = R.Colors.titleGray
-        titleLabel.font = R.Fonts.helvelticaRegular(with: 22)
-        
-        allWorkoutsButton.setTitle(R.Strings.Navbar.Overview.allWorkoutsButton)
     }
 }
