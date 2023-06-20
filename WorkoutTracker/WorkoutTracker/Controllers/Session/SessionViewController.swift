@@ -9,8 +9,8 @@ import UIKit
 
 final class SessionViewController: BaseController {
 
-    private let timerView: WABaseInfoView = {
-        let base = WABaseInfoView(with: "test", buttonTitle: "sdf")
+    private let timerView: TimerView = {
+        let base = TimerView()
         
         return base
     }()
@@ -31,7 +31,7 @@ extension SessionViewController {
             timerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             timerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             timerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
-            timerView.heightAnchor.constraint(equalToConstant: 368)
+            timerView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
     

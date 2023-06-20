@@ -76,7 +76,7 @@ private extension WAButton {
             
             label.centerYAnchor.constraint(equalTo: centerYAnchor),
             label.trailingAnchor.constraint(equalTo: iconView.leadingAnchor, constant: -10),
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 2*horizontalOffset)
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 1.5*horizontalOffset)
         ])
     }
     
