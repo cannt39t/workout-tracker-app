@@ -9,24 +9,26 @@ import Foundation
 
 extension Date {
     
-    private var calendar: Calendar {
-        return Calendar.current
+    static var calendar: Calendar {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.firstWeekday = 2
+        return calendar
     }
     
     var startOfWeek: Date {
-        let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)
-        guard let firstDay = calendar.date(from: components) else {
+        let components = Date.calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)
+        guard let firstDay = Date.calendar.date(from: components) else {
             return self
         }
-        return calendar.date(byAdding: .day, value: 1, to: firstDay) ?? self
+        return Date.calendar.date(byAdding: .day, value: 0, to: firstDay) ?? self
     }
     
     func addForward(to days: Int) -> Date {
-        return calendar.date(byAdding: .day, value: days, to: self) ?? self
+        return Date.calendar.date(byAdding: .day, value: days, to: self) ?? self
     }
     
     func stripTime() -> Date {
-        let componenets = calendar.dateComponents([.year, .month, .day], from: self)
-        return calendar.date(from: componenets) ?? Date()
+        let componenets = Date.calendar.dateComponents([.year, .month, .day], from: self)
+        return Date.calendar.date(from: componenets) ?? Date()
     }
  }

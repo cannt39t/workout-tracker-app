@@ -9,7 +9,6 @@ import UIKit
 
 final class WeekView: BaseView {
     
-    private let calendar = Calendar.current
     private var stackView = UIStackView()
 }
 
@@ -38,9 +37,9 @@ extension WeekView {
         stackView.spacing = 8
         stackView.distribution = .fillEqually
         
-        var weekdays = calendar.shortStandaloneWeekdaySymbols
+        var weekdays = Date.calendar.shortStandaloneWeekdaySymbols
         
-        if calendar.firstWeekday == 1 {
+        if Date.calendar.firstWeekday == 2 {
             let sun = weekdays.remove(at: 0)
             weekdays.append(sun)
         }
