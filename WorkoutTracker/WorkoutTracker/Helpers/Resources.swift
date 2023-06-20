@@ -40,8 +40,9 @@ enum R {
             
             enum Session {
                 static let title = "High Intensity Cardio"
-                static let navBarLeft = "Pause"
-                static let navBarRight = "Finish"
+                static let navBarStart = "Start"
+                static let navBarPaused = "Pause"
+                static let navBarFinished = "Finish"
             }
             
             enum Progress {

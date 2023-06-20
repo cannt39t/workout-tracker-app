@@ -65,4 +65,16 @@ extension BaseController {
                 navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
         }
     }
+    
+    func setTitleForBarButton(at position: NavBarPosition, with title: String) {
+        switch position {
+            case .left:
+                let button = navigationItem.leftBarButtonItem?.customView as! UIButton
+                button.setTitle(title, for: .normal)
+            case .right:
+                let button = navigationItem.rightBarButtonItem?.customView as! UIButton
+                button.setTitle(title, for: .normal)
+        }
+        navigationItem.leftBarButtonItem?.customView?.layoutSubviews()
+    }
 }
