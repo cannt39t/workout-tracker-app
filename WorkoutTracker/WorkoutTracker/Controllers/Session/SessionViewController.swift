@@ -14,7 +14,11 @@ final class SessionViewController: BaseController {
     
     override func navBarLeftButton() {
         if timerView.state != .isRunning {
-            timerView.startTimer()
+            timerView.startTimer { [weak self] in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self?.navBarRightButton()
+                }
+            }
         } else {
             timerView.pauseTimer()
         }
@@ -45,7 +49,6 @@ extension SessionViewController {
             timerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             timerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
             timerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15),
-//            timerView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
     
